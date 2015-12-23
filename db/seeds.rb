@@ -2,6 +2,10 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
+# Create users
+User.create({username: 'admin', email: 'admin@example.com', password: '12345678'})
+User.create({username: 'user', email: 'user@example.com', password: '12345678'})
+
 # Create Regions
 ['Ho Chi Minh', 'Ha Noi', 'Binh Thuan', 'Da Nang', 'Lam Dong'].each do |r|
   Region.create(name: r)
