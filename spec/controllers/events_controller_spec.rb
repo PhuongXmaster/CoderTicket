@@ -13,22 +13,21 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to render_template("index")
     end
 
-    it "loads all of the posts into @posts" do
-      post1, post2 = Event.create!, Event.create!
+    it "loads all of the events into @events" do
+      event1, event2 = FactoryGirl.create(:event), FactoryGirl.create(:event)
       get :index
-
-      expect(assigns(:posts)).to match_array([post1, post2])
+      expect(assigns(:events)).to match_array([event1, event2])
     end
     
-    it "loads only today's posts into @posts" do
-      post1, post2 = Event.create!(ends_at: 1.day.ago), Event.create!
-      get :index
+    # it "loads only today's posts into @posts" do
+    #   post1, post2 = Event.create!(ends_at: 1.day.ago), Event.create!
+    #   get :index
 
-      expect(assigns(:posts)).to eq [post2]
-    end
+    #   expect(assigns(:posts)).to eq [post2]
+    # end
     
-    it "redirect to /login" do
-      expect(get :index).to redirect_to("/login")
-    end
+    # it "redirect to /login" do
+    #   expect(get :index).to redirect_to("/login")
+    # end
   end
 end

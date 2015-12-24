@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 'Ho Chi Minh'
+
+two:  
+  name: 'Ha Noi'
+
+three:
+  name: 'Binh Thuan'
+
+four: 
+  name: 'Da Nang'
+
+five: 
+  name: 'Lam Dong'
