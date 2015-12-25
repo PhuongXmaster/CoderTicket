@@ -19,15 +19,16 @@ RSpec.describe EventsController, type: :controller do
       expect(assigns(:events)).to match_array([event1, event2])
     end
     
-    # it "loads only today's posts into @posts" do
-    #   post1, post2 = Event.create!(ends_at: 1.day.ago), Event.create!
-    #   get :index
+    it "loads only upcoming events into @events" do
+      event1, event2 = FactoryGirl.create(:event, starts_at: 1.day.ago), FactoryGirl.create(:event)
+      get :index
+      expect(assigns(:events)).to eq [event2]
+    end
 
-    #   expect(assigns(:posts)).to eq [post2]
-    # end
-    
-    # it "redirect to /login" do
-    #   expect(get :index).to redirect_to("/login")
-    # end
+    it "can search events by name" do
+      event1, event2 = FactoryGirl.create(:event, name: "Hello world"), FactoryGirl.create(:event, name: "Test")
+      get :index, search: "test"
+      expect(assigns(:events)).to eq [event2]
+    end
   end
 end
