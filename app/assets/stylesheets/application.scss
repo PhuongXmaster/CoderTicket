@@ -8,6 +8,12 @@ div.container.app-container {
   margin-top: 76px;
 }
 
-.checkbox label input {
+.checkbox label input,
+.radio label input {
   margin-right: 6px;
+}
+
+.help-block {
+  color: #a94442;
+  font-style: italic;
 }

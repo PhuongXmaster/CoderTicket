@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223034604) do
+ActiveRecord::Schema.define(version: 20151226123509) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20151223034604) do
 
   add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
 
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "ticket_type_id"
+    t.integer   "quantity"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tickets", ["ticket_type_id"], name: "index_tickets_on_ticket_type_id", using: :btree
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -84,5 +95,7 @@ ActiveRecord::Schema.define(version: 20151223034604) do
   add_foreign_key "events", "categories"
   add_foreign_key "events", "venues"
   add_foreign_key "ticket_types", "events"
+  add_foreign_key "tickets", "ticket_types"
+  add_foreign_key "tickets", "users"
   add_foreign_key "venues", "regions"
 end

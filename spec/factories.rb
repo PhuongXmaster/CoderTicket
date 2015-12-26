@@ -1,4 +1,9 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :ticket do
+    user nil
+ticket_type nil
+quantity "MyString"
+  end
+
   factory :user do
     username      "Test User"
     email         "test@example.com"
