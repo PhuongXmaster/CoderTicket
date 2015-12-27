@@ -1,0 +1,17 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :starts_at %>
+    <%= f.input :ends_at %>
+    <%= f.input :hero_image_url %>
+    <%= f.input :extended_html_description %>
+    <%= f.association :venue %>
+    <%= f.association :category %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
