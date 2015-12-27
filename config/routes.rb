@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :tickets
     post 'tickets/new' => 'tickets#create'
+    put 'publish' => 'events#publish'
   end
 
   resources :venues 

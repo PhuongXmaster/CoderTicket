@@ -1,12 +1,8 @@
-FactoryGirl.define do  factory :venue do
-    name "MyString"
-full_address "MyString"
-region nil
-  end
+FactoryGirl.define do
   factory :ticket do
     user nil
-ticket_type nil
-quantity "MyString"
+    ticket_type nil
+    quantity "MyString"
   end
 
   factory :user do
@@ -36,5 +32,6 @@ quantity "MyString"
     extended_html_description "test description"
     venue                     { Venue.first || FactoryGirl.create(:venue) }
     category                  { Category.first || FactoryGirl.create(:category) }
+    has_published             true
   end
 end

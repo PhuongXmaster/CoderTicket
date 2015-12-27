@@ -4,9 +4,9 @@ class EventsController < ApplicationController
   def index
     search_term = params[:search]
     if search_term.blank?
-      @events = Event.all.where('starts_at >= ?', Time.now)
+      @events = Event.all.where('starts_at >= ? AND has_published = true', Time.now)
     else
-      @events = Event.all.where("lower(name) like ?", "%#{search_term.downcase}%")
+      @events = Event.all.where("lower(name) like ? AND has_published = true", "%#{search_term.downcase}%")
     end 
     
   end
@@ -33,6 +33,13 @@ class EventsController < ApplicationController
       end
     end
   end 
+
+  def publish
+    @event = Event.find(params[:event_id])
+    @event.has_published = true
+    @event.save
+    redirect_to action: "show", id: params[:event_id]
+  end
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.

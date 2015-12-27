@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226123509) do
+ActiveRecord::Schema.define(version: 20151227114851) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151226123509) do
     t.string   "name"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.boolean  "has_published"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
