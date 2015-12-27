@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151226123509) do
   create_table "tickets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "ticket_type_id"
-    t.integer   "quantity"
+    t.integer  "quantity"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

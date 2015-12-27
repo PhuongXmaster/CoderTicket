@@ -1,4 +1,9 @@
-FactoryGirl.define do  factory :ticket do
+FactoryGirl.define do  factory :venue do
+    name "MyString"
+full_address "MyString"
+region nil
+  end
+  factory :ticket do
     user nil
 ticket_type nil
 quantity "MyString"
