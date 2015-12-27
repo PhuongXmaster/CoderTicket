@@ -33,5 +33,6 @@ FactoryGirl.define do
     venue                     { Venue.first || FactoryGirl.create(:venue) }
     category                  { Category.first || FactoryGirl.create(:category) }
     has_published             true
+    creator                   { User.first || FactoryGirl.create(:user) }
   end
 end

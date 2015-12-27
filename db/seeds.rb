@@ -3,8 +3,8 @@
 #
 
 # Create users
-User.create({username: 'admin', email: 'admin@example.com', password: '12345678'})
-User.create({username: 'user', email: 'user@example.com', password: '12345678'})
+admin = User.create({username: 'admin', email: 'admin@example.com', password: '12345678'})
+user = User.create({username: 'user', email: 'user@example.com', password: '12345678'})
 
 # Create Regions
 ['Ho Chi Minh', 'Ha Noi', 'Binh Thuan', 'Da Nang', 'Lam Dong'].each do |r|
@@ -30,6 +30,7 @@ e = Event.create({
   ends_at: DateTime.parse('Sun, 13 Mar 2016 3:00 PM+0700'),
   has_published: true,
   venue: dalat,
+  creator: admin,
   category: Category.find_by(name: 'Everything Else'),
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/10/25/C6A1A5.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
   extended_html_description: <<-DESC
@@ -60,6 +61,7 @@ e = Event.create({
   starts_at: DateTime.parse('Sat, 16 Jan 2016, 8:00 PM+0700'),
   ends_at: DateTime.parse('Sat, 16 Jan 2016, 10:30 PM+0700'), 
   has_published: true, 
+  creator: admin,
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/12/11/C68636.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
   extended_html_description: <<-DESC
   <p style="text-align:justify"> </p>
@@ -143,6 +145,7 @@ e = Event.create({
   ends_at: DateTime.parse('Thu, 24 Dec 2015, 11:00 PM+0700'),
   has_published: true,
   venue: gap,
+  creator: admin,
   category: Category.find_by(name: 'Entertainment'),
   hero_image_url:'https://az810747.vo.msecnd.net/eventcover/2015/12/12/78534E.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
   extended_html_description: <<-DESC
