@@ -42,6 +42,11 @@ class EventsController < ApplicationController
     redirect_to action: "show", id: params[:event_id]
   end
 
+  def myevents
+    @events = current_user.events
+    render :index
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params

@@ -5,8 +5,11 @@
       <div class="card-block">
         <h4 class="card-title"><%= event.name %></h4>
         <p class="card-text">
-          Start: <%= event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> <br>
+          Start: <%= event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
+          <%= "(past event)" if event.starts_at < Time.now %>
+          <br>
           End: <%= event.ends_at.strftime('%A, %d %b %Y %l:%M %p') %>
+          <%= "(expired)" if event.ends_at < Time.now %>
         </p>
       </div>
     </div>

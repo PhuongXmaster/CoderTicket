@@ -5,12 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:login]  
 
+  has_many :events, foreign_key: 'creator_id'
 
   validate :validate_username
   validates :username, :presence => true,
     :uniqueness => {
-      :case_sensitive => false
-    } 
+    :case_sensitive => false
+  } 
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
