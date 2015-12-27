@@ -6,8 +6,8 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :ticket_type, as: :radio_buttons, collection: @event.ticket_types.collect { |type| ["#{type.name} - #{number_to_currency(type.price, unit: 'VND', precision: 0)}. Max quantity: #{type.max_quantity}", type.id] }, required: true %>
-      <%= f.input :quantity %>
+      <%= f.input :ticket_type, as: :radio_buttons, collection: @event.ticket_types.collect { |type| ["#{type.display_text}. Available: #{available_ticket type}", type.id] }, required: true %>
+      <%= f.input :quantity, collection: 1..10, selected: 1 %>
     </div>
 
     <div class="form-actions">
