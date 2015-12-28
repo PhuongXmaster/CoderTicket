@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'events#index'
 
-  resources :events do
+  resources :events, except: :destroy do
     resources :tickets
-    resources :ticket_types
+    resources :ticket_types, except: :index
 
     put 'publish' => 'events#publish'
   end
