@@ -12,6 +12,7 @@ FactoryGirl.define do
 
   factory :venue do
     sequence(:name)   { |n| "Test venue #{n}" }
+    full_address      "Test address"
     region            { Region.first || FactoryGirl.create(:region) }
   end
 

@@ -1,18 +1,14 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe "venues/show", type: :view do
-#   before(:each) do
-#     @venue = assign(:venue, Venue.create!(
-#       :name => "Name",
-#       :full_address => "Full Address",
-#       :region => nil
-#     ))
-#   end
+RSpec.describe "venues/show", type: :view do
+  before(:each) do
+    @venue = assign(:venue, FactoryGirl.create(:venue))
+  end
 
-#   it "renders attributes in <p>" do
-#     render
-#     expect(rendered).to match(/Name/)
-#     expect(rendered).to match(/Full Address/)
-#     expect(rendered).to match(//)
-#   end
-# end
+  it "renders attributes in <p>" do
+    render
+    expect(rendered).to include @venue.name
+    expect(rendered).to include @venue.full_address
+    expect(rendered).to include @venue.region.name
+  end
+end
