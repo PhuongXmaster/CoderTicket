@@ -22,6 +22,18 @@ RSpec.describe Ticket, type: :model do
       expect(@ticket).not_to be_valid
       expect(@ticket).to have(1).errors_on :quantity
     end
+
+    it "can be less than 10" do 
+      @ticket.quantity = 9
+      expect(@ticket).to be_valid
+    end
+
+    it "cannot greater than max_quantity" do 
+      @ticket.ticket_type = FactoryGirl.create(:ticket_type, max_quantity: 3)
+      @ticket.quantity = 4
+      expect(@ticket).not_to be_valid
+      expect(@ticket).to have(1).errors_on :quantity
+    end
   end
 
   describe "relationships" do 
