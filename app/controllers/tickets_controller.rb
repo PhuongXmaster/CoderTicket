@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
         @ticket.errors.add :quantity, "Quantity cannot be greater than #{available_ticket}."  
         render :new
       elsif @ticket.save
-          redirect_to root_path
+          redirect_to event_path(@event), notice: "Ticket is booked successfully."
       else
         render :new
       end
@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
 
   helper_method :available_ticket
   def available_ticket ticket_type
-    ticket_type.max_quantity - ticket_type.tickets.where(user: current_user).count
+    ticket_type.max_quantity - ticket_type.tickets.where(user: current_user).sum(:quantity)
   end
 
   private

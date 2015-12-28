@@ -33,7 +33,7 @@ class TicketTypesController < ApplicationController
 
     respond_to do |format|
       if @ticket_type.save
-        format.html { redirect_to event_ticket_type_path(@event, @ticket_type), notice: 'Ticket type was successfully created.' }
+        format.html { redirect_to event_path(@event), notice: 'Ticket type was successfully created.' }
         format.json { render :show, status: :created, location: @ticket_type }
       else
         format.html { render :new }
