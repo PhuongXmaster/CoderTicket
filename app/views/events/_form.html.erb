@@ -3,8 +3,8 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :starts_at %>
-    <%= f.input :ends_at %>
+    <%= f.input :starts_at, default: 1.month.from_now %>
+    <%= f.input :ends_at, default: 3.months.from_now %>
     <%= f.input :hero_image_url %>
     <%= f.input :extended_html_description %>
     <%= f.association :venue %>

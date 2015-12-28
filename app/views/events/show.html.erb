@@ -15,15 +15,18 @@
           </div>
           <div class="clearfix"></div>
         <% end %>
-        <%= link_to new_event_ticket_path(@event) do %>
-          <button class='btn btn-lg btn-block btn-warning'> BOOK NOW </button>
-        <% end %>
-        <% unless @event.has_published %>
+        
+        <% if @event.has_published %>
+          <%= link_to new_event_ticket_path(@event) do %>
+            <button class='btn btn-lg btn-block btn-warning'> BOOK NOW </button>
+          <% end %>
+        <% else %>
+          <%= link_to new_event_ticket_type_path(@event), method: :get do %>
+            <button class='btn btn-lg btn-block btn-secondary-outline'>Create ticket type</button>
+          <% end %>
           <%= link_to event_publish_path(@event), method: :put do %>
             <button class='btn btn-lg btn-block btn-primary'> PUBLISH NOW </button>
           <% end %>
-        <% else %>
-          <a class='btn btn-lg btn-block btn-secondary-outline disabled'> Published </a>
         <% end %>
       </div>
     </div>

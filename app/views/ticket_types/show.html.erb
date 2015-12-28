@@ -1,0 +1,24 @@
+<div class="container app-container">
+  <%= flash_messages %>
+
+  <h1>Ticket type</h1>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @ticket_type.name %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @ticket_type.price %>
+  </p>
+
+  <p>
+    <strong>Max quantity:</strong>
+    <%= @ticket_type.max_quantity %>
+  </p>
+
+  <%= link_to 'Edit', edit_event_ticket_type_path(@event, @ticket_type) %> |
+  <%= link_to 'Delete', event_ticket_type_path(@event, @ticket_type), method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Show event', event_path(@event) %>
+</div>

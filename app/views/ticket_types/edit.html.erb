@@ -1,0 +1,10 @@
+<div class="container app-container">
+  <h1>Editing Ticket Type</h1>
+
+  <%= simple_form_for(@ticket_type, url: event_ticket_type_path) do |f| %>
+    <%= render 'form', f: f %>
+  <% end %>
+
+  <%= link_to 'Show', event_ticket_type_path(@event, @ticket_type) %> 
+  <%= link_to 'Back', :back %>
+</div>
