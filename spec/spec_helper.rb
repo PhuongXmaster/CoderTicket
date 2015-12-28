@@ -19,6 +19,7 @@
 
 require 'devise' 
 require 'support/controller_helpers'  
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
 
@@ -97,4 +98,18 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Choose one or more libraries:
+    with.library :active_record
+    with.library :active_model
+    with.library :action_controller
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
 end
