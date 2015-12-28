@@ -7,27 +7,35 @@
       </p>
       <div class="ticket-list">
         <% @event.ticket_types.each do |ticket_type| %>
-          <div class="pull-left">
-            <%= ticket_type.name %>
-          </div>
-          <div class="pull-right price">
-            <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0) %>
-          </div>
+          <% if current_user == @event.creator %>
+            <%= link_to event_ticket_type_path(@event, ticket_type), class: "btn btn-link price-link" do %>
+              <%= render "ticket_price", ticket_type: ticket_type %>
+            <% end %>
+          <% else %>
+            <%= render "ticket_price", ticket_type: ticket_type %>
+          <% end %>
           <div class="clearfix"></div>
         <% end %>
-        
-        <% if @event.has_published %>
-          <%= link_to new_event_ticket_path(@event) do %>
-            <button class='btn btn-lg btn-block btn-warning'> BOOK NOW </button>
+
+        <div class="button-list">
+          <% if @event.has_published %>
+            <%= link_to new_event_ticket_path(@event) do %>
+              <button class='btn btn-lg btn-block btn-warning'> BOOK NOW </button>
+            <% end %>
+          <% else %>
+            <%= link_to event_publish_path(@event), method: :put do %>
+              <button class='btn btn-lg btn-block btn-primary'> PUBLISH NOW </button>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to new_event_ticket_type_path(@event), method: :get do %>
-            <button class='btn btn-lg btn-block btn-secondary-outline'>Create ticket type</button>
+          <% if is_event_creator %>
+            <%= link_to new_event_ticket_type_path(@event), method: :get do %>
+              <button class='btn btn-lg btn-block btn-secondary-outline'>Add ticket type</button>
+            <% end %>
+            <%= link_to edit_event_path(@event) do %>
+              <button class='btn btn-lg btn-block btn-secondary-outline'>Edit event</button>
+            <% end %>
           <% end %>
-          <%= link_to event_publish_path(@event), method: :put do %>
-            <button class='btn btn-lg btn-block btn-primary'> PUBLISH NOW </button>
-          <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
     <div class="col-md-9 event-content">

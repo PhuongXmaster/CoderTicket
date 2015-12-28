@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :has_event_published, only: [:show]
 
   def index
     search_term = params[:search]
@@ -12,7 +14,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   # GET /venues/new
@@ -37,9 +38,14 @@ class EventsController < ApplicationController
 
   def publish
     @event = Event.find(params[:event_id])
-    @event.has_published = true
-    @event.save
-    redirect_to action: "show", id: params[:event_id]
+
+    if @event.ticket_types.empty?
+      redirect_to event_path(@event), alert: "Cannot publish an event without any ticket types."
+    else 
+      @event.has_published = true
+      @event.save
+      redirect_to action: "show", id: params[:event_id]  
+    end
   end
 
   def myevents
@@ -47,7 +53,36 @@ class EventsController < ApplicationController
     render :index
   end
 
+  def edit 
+  end
+
+  def update 
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to event_url, notice: 'Event was successfully updated.' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :edit }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def has_event_published
+    redirect_to events_path, notice: 'This event is not published yet.' unless @event.has_published || is_event_creator
+  end
+
+  helper_method :is_event_creator
+  def is_event_creator
+    @event.creator == current_user
+  end
+
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event)

@@ -98,7 +98,13 @@
         .ticket-list {
             padding-left: 40px;
             padding-right: 40px;
-            button, a {
+
+            .price-link {
+                width: 100%;
+            }
+
+            .button-list button, 
+            .button-list a {
                 margin-top: 40px;
             }
         }
