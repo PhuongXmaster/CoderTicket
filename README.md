@@ -57,6 +57,12 @@ The following **required** functionality is complete:
 
 Describe any challenges encountered while building the app.
 
+## Walkthrough
+![walk through](https://github.com/PhuongXmaster/CoderTicket/blob/master/CoderTicket.gif?raw=true)
+
+Continued: 
+![walk through cont](https://github.com/PhuongXmaster/CoderTicket/blob/master/CoderTicket_cont.gif?raw=true)
+
 ## License
 
     Copyright [yyyy] [name of copyright owner]
