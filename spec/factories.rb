@@ -1,10 +1,4 @@
 FactoryGirl.define do
-  factory :ticket do
-    user nil
-    ticket_type nil
-    quantity "MyString"
-  end
-
   factory :user do
     username      "Test User"
     email         "test@example.com"
@@ -34,5 +28,18 @@ FactoryGirl.define do
     category                  { Category.first || FactoryGirl.create(:category) }
     has_published             true
     creator                   { User.first || FactoryGirl.create(:user) }
+  end
+
+  factory :ticket_type do
+    event
+    sequence(:name)           { |n| "Test ticket type #{n}" }
+    price                     100000
+    max_quantity              10
+  end
+
+  factory :ticket do
+    user                      { User.first || FactoryGirl.create(:user) }
+    ticket_type               { TicketType.first || FactoryGirl.create(:ticket_type) }
+    quantity                  1
   end
 end

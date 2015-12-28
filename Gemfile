@@ -56,4 +56,5 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0'
+  gem 'rspec-collection_matchers'
 end

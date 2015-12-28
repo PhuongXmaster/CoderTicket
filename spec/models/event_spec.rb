@@ -11,7 +11,9 @@ RSpec.describe Event, type: :model do
     it { should validate_presence_of(:venue) }
     it { should validate_presence_of(:category) }
     it { should validate_presence_of(:starts_at) }
+  end
 
+  describe "relationships" do 
     it { should belong_to :venue }
     it { should belong_to :category }
     it { should belong_to(:creator).class_name 'User' }
