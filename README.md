@@ -4,7 +4,7 @@
 
 Submitted by: **Doan Hung Phuong**
 
-Time spent: **20** hours
+Time spent: **56** hours
 
 URL: https://coderticket-phuong.herokuapp.com/
 
