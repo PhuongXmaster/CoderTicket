@@ -8,7 +8,7 @@ Time spent: **20** hours
 
 URL: https://coderticket-phuong.herokuapp.com/
 
-SimpleCov Test Coverage: **Insert percentage or link to report here**
+SimpleCov Test Coverage: 85.91%
 
 ## User Stories
 
