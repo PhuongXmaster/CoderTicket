@@ -21,6 +21,11 @@ require 'devise'
 require 'support/controller_helpers'  
 require 'shoulda/matchers'
 
+if ENV['RAILS_ENV'] == 'test'
+  require 'simplecov'
+  SimpleCov.start
+end
+
 RSpec.configure do |config|
 
     config.include Devise::TestHelpers, :type => :controller
